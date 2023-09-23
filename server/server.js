@@ -1,31 +1,35 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
+import axios from "axios";
 
 const server = new ApolloServer({
 	typeDefs: `
-    type Book {
-      title: String
-      author: String
+    type Todos {
+			id: ID!,
+			title: String!,
+			completed: Boolean
     }
 
+		type Users {
+			id: ID!,
+			name: String!,
+			username: String!,
+			email: String!,
+			phone: String!,
+			website: String!
+		}
+
     type Query {
-      getBooks: [Book]
+      getTodos: [Todos],
+			getUsers: [Users]
     }
 `,
 	resolvers: {
 		Query: {
-			getBooks: () => {
-				return [
-					{
-						title: "The Awakening",
-						author: "Kate Chopin",
-					},
-					{
-						title: "City of Glass",
-						author: "Paul Auster",
-					},
-				];
-			},
+			getTodos: async () =>
+				(await axios.get("https://jsonplaceholder.typicode.com/todos")).data,
+			getUsers: async () =>
+				(await axios.get("https://jsonplaceholder.typicode.com/users")).data,
 		},
 	},
 });
