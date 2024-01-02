@@ -11,6 +11,11 @@ Install dependencies:
   npm install
 ```
 
-After installing the dependencies, you can login to Apollo client for more configurations. This can be found generally on the internet. Post setting these up, you can use Postman or your own frontend to test the server requests and responses.
+Run locally:
+```bash
+  npm run dev
+```
+
+After installing the dependencies, you can login to Apollo client for more configurations. This can be found generally on the internet. Post setting these up, you can use Postman or spin up your own frontend to test the server requests and responses.
 
 ### Happy Coding!
